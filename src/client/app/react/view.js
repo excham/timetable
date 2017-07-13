@@ -14,12 +14,25 @@ class View extends React.Component {
     }
   }
 
+  componentWillMount() {
+    this.state = {
+      times: JSON.parse(localStorage.getItem(this.props.params.level)) || []
+    }
+
+    console.log(1, JSON.parse(localStorage.getItem(this.props.params.level)));
+  }
+
   componentDidMount() {
-    $.get('/api/times', {level: this.props.params.level}, function (data) {
-      this.setState({
-        times: data
-      })
-    }.bind(this))
+    console.log(this.state.times);
+    if(this.state.times){
+      $.get('/api/times', {level: this.props.params.level}, function (data) {
+        this.setState({
+          times: data
+        })
+        console.log(this.props);
+        localStorage.setItem(this.props.params.level, JSON.stringify(data))
+      }.bind(this))
+    }
   }
 
   render() {
