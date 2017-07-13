@@ -1,7 +1,5 @@
 node_modules
 
-src/server/config/index.json
-
 src/client/public/js/*
 src/client/public/css/*
 src/client/public/fonts/*
